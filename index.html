@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add font awsome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Add roboto-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow | Focus & Productivity</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="app-title">Tasks Flow</h1>
+        <div class="add-task-container">
+            <input type="text" id="input-task" placeholder="Add a task…">
+            <button class="add-task"><i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
+            <div id="task-container"></div>
+
+        <div class="progress-container">
+            <div id="progressBar"></div>
+        </div>
+
+        <p id="progressText"></p>
+        <p id="motivationMessage"></p>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

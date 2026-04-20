@@ -1,0 +1,150 @@
+body {
+    background: #f2f2f7; 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    justify-content: center;
+    align-content: space-between;
+    display: flex;
+}
+
+.app-title{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 650;
+    color: #5856D6;
+    margin-bottom: 10px;
+    padding-top: 50px;
+    margin-top: 20%;
+    letter-spacing: 1px;
+}
+
+.add-task-container{
+    background-color: #FFFFFF;
+    box-shadow: 0 0 2px black;
+    border-radius: 12px;
+    padding: 20px 10px;
+    align-content: space-between;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+}
+
+#input-task{
+    font-size: 1.1rem;
+    color:#5856D6;
+    /* border: #5856D6 solid; */
+    transition: 0.3s;
+    flex: 1;
+    border-radius: 12px;
+    box-shadow: 0 0 1px darkgray;
+}
+
+.task{
+    background-color: #FFFFFF;
+    box-shadow: 0 0 2px black;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 350px;
+}
+.add-task{
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-left: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 1 ;
+}
+
+#task-container{
+    align-content: space-between;
+}
+
+.checkTask{
+    font-size: 1rem;
+    color: #1C1C1E;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 0 1 ;
+    font-size: 0.8rem; 
+    padding: 8px;
+    margin-right: 5px;
+}
+
+.deleteTask{
+    color: #1C1C1E;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 0 1 ;
+    font-size: 0.8rem;
+    padding: 8px;
+}
+
+.task li {
+    font-size: 1.1rem;
+    display: flex;
+    text-decoration: none;
+    align-content: space-between;
+    flex: 1;
+    min-width: 0;
+    padding: 5px;
+    overflow-wrap: break-word;
+    /* white-space: normal; */
+    
+}
+
+.task.checked li {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+#progressText{
+    justify-content: center;
+    text-align: center;
+}
+
+#motivationMessage{
+    justify-content: center;
+    text-align: center;
+}
+
+.add-task:hover,
+.checkTask:hover,
+.deleteTask:hover{
+    transition: .3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    background-color: #5856D6;
+    color: white;
+}
+
+.add-task,
+.checkTask,
+.deleteTask,
+.task,
+#input-task{
+    transition: .3s ease;
+}
+
+.task.removing{
+    animation: slideDownFade 0.4s ease forwards;
+}
+
+@keyframes slideDownFade{
+    0%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100%{
+        opacity: 0;
+        transform: translateY(40px);
+        height: 0;
+        margin: 0;
+        padding: 0;
+    }
+}
