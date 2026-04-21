@@ -1,4 +1,4 @@
-# ToDo App
+# TasksFlow App
 
 Modern ToDo application built with HTML, CSS and JavaScript.
 
@@ -34,6 +34,9 @@ Message shown:
 * Delete tasks with smooth animation
 * Mark tasks as completed
 * Progress tracking
+* Persistent storage using localStorage
+* State management for task updates
+* Data persists after page refresh
 * Clean and minimal UI
 
 ## Technologies Used

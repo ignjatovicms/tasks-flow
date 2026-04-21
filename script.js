@@ -2,55 +2,80 @@
 const inputTask = document.getElementById("input-task");
 const addTask = document.querySelector(".add-task");
 const taskContainer = document.querySelector("#task-container"); 
+const storedInput = JSON.parse(localStorage.getItem("textinput"));
+
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+function createTask(task, index)
+{
+  let taskElement = document.createElement("div"); // box on the screen
+  taskElement.classList.add("task");
+
+  let li = document.createElement("li");  
+  li.innerText = task.text; //Show task in Task text
+
+  taskElement.appendChild(li);
+
+  let checkBtn = document.createElement("button");
+  checkBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+  checkBtn.classList.add("checkTask")
+  taskElement.appendChild(checkBtn);
+
+  let deleteBtn = document.createElement("button");
+  deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+  deleteBtn.classList.add("deleteTask")
+  taskElement.appendChild(deleteBtn); 
+
+  taskContainer.appendChild(taskElement); 
+
+  checkBtn.addEventListener("click", function()
+  {
+    tasks[index].done = !tasks[index].done;
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    taskElement.classList.toggle("checked");
+
+    updateProgressBar();
+  });
+
+  deleteBtn.addEventListener("click", function()
+  {
+    tasks.splice(index, 1); // removes the task at the given index from the array
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  
+    setTimeout(() => {
+      taskElement.remove();
+      updateProgressBar();
+    }, 400)
+  });
+
+  if (task.done) 
+  { // If task is marked as done, add "checked" CSS class
+    taskElement.classList.add("checked");
+  }
+}
 
 addTask.addEventListener("click", function()
 {
-if (inputTask.value.trim() === "") // prevent empty or whitespace-only input
-    {
+  if (inputTask.value.trim() === "") // prevent empty or whitespace-only input
+  {
     inputTask.style.border = "1px solid #FF3B30";
     alert("Please enter a task...");
     return; 
-    } 
-else {
-        inputTask.style.border = "";
-     }
+  } 
+  else 
+  {
+    inputTask.style.border = "";
+  }
 
-let task = document.createElement("div"); //task container
-task.classList.add("task");
+  let newTask = { text: inputTask.value, done:false };
 
-let li = document.createElement("li"); // task text 
-li.innerText = inputTask.value;
-task.appendChild(li);
+  tasks.push(newTask); //Add tasks as object in tasks array
+  localStorage.setItem("tasks", JSON.stringify(tasks)); //Saves array in Local Storage
 
-let checkBtn = document.createElement("button");
-checkBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
-checkBtn.classList.add("checkTask")
-task.appendChild(checkBtn);
+  createTask(newTask, tasks.length-1);
 
-let deleteBtn = document.createElement("button");
-deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
-deleteBtn.classList.add("deleteTask")
-task.appendChild(deleteBtn); 
-
-taskContainer.appendChild(task);
-inputTask.value = "";
-
-checkBtn.addEventListener("click", function(){
-    task.classList.toggle("checked");
-    updateProgressBar();
+  inputTask.value = "";
 });
-
-
-deleteBtn.addEventListener("click", function(e){
-    let target = e.currentTarget.parentElement;
-    target.classList.add("removing");
-  
-    setTimeout(() => {
-      task.remove();
-      updateProgressBar();
-    }, 400)
-});
-
 
 function updateMotivationMessage(progress) 
 {
@@ -105,7 +130,6 @@ function updateProgressBar()
   updateMotivationMessage(Math.round(progress));
 }
 
-
 inputTask.addEventListener("focus", () => {
   inputTask.style.border = "";
 });
@@ -117,4 +141,8 @@ inputTask.addEventListener("input", () => {
       inputTask.style.border = "";
   }
 });
-});
+
+
+tasks.forEach((element , index)  => {
+  createTask(element , index);
+}); // loop through tasks and render each one to the DOM
